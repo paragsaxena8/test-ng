@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  border-top: 1px solid #ccc;
+  padding: 8px;
+}
+
+button {
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+button.active {
+  font-weight: bold;
+  border: 1px solid #000;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

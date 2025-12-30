@@ -1,0 +1,17 @@
+<div class="card-wrapper">
+    @for (item of pagedItems; let i = $index; track $index) {
+    <div class="card">
+        <div class="card-header">
+            {{ item }}
+        </div>
+    </div>
+    }
+
+</div>
+<!-- parent.component.html -->
+<app-pagination
+  [totalItems]="totalItems"
+  [pageSize]="pageSize"
+  [currentPage]="page"
+  (pageChange)="page = $event"
+></app-pagination>

@@ -1,0 +1,70 @@
+<div
+  class="w-full h-100 p-5 bg-white border border-gray-200 rounded-lg shadow-sm  dark:bg-gray-800 dark:border-gray-700">
+
+  <h2 class="text-2xl font-bold mb-4 dark:text-white">Simple Search</h2>
+  <input
+    class="w-full mr-2 p-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+    name="search" type="text" placeholder="Search..." [ngModel]="searchQuery()"
+    (ngModelChange)="searchQuery.set($event)" />
+
+  <button
+    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    type="button" (click)="search()">
+    Search
+  </button>
+
+
+  <div class="mt-6">
+    <h3 class="text-xl font-semibold mb-2 dark:text-white">Results: {{ searchQuery() }}</h3>
+    <ul class="list-disc list-inside dark:text-white">
+      <!-- <li *ngFor="let result of results">{{ result }}</li> -->
+
+    </ul>
+  </div>
+
+
+</div>
+
+
+<div
+  class="w-full h-100 p-5 bg-white border border-gray-200 rounded-lg shadow-sm  dark:bg-gray-800 dark:border-gray-700 mt-2">
+
+  <h2 class="text-2xl font-bold mb-4 dark:text-white">Autocomple Search</h2>
+  <div class="flex flex-row gap-2">
+    <div class="flex-grow">
+      <input
+        class="w-full mr-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white h-3r dropdown-toggle"
+        autocomplete="off" name="search" type="text" placeholder="Search..." [ngModel]="autocompleteQuery()"
+        (ngModelChange)="autocompleteQuery.set($event)" (focus)="onAutoCompleFocus()" />
+      @if (showSuggestions()) {
+      <div class="autocomplete">
+        <ul class="p-1 dark:text-white bg-gray-700 rounded-md mt-1 max-h-40 overflow-y-auto input-box">
+          @for (item of suggestions() | filterByName: autocompleteQuery() ; track item.id) {
+
+          <li class="flex items-center p-2 hover:bg-gray-600">
+            <input id="default-checkbox" type="checkbox" value=""
+              class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              (click)="selectSuggestion(item.name)">
+            <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ item.name
+              }}</label>
+          </li>
+
+          }
+        </ul>
+      </div>
+      }
+    </div>
+
+    <button type="button"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 h-3r mb-2">🔍</button>
+
+
+  </div>
+
+
+  <div class="mt-6">
+    <h3 class="text-xl font-semibold mb-2 dark:text-white">Results: {{ autocompleteQuery() }}</h3>
+  </div>
+
+
+</div>
