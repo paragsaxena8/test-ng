@@ -1,10 +1,17 @@
-<div class="card-wrapper">
+<div class="card-wrapper gap-2">
     @for (item of pagedItems; let i = $index; track $index) {
-    <div class="card">
-        <div class="card-header">
-            {{ item }}
-        </div>
-    </div>
+    <hlm-card size="sm" class="mx-auto w-full max-w-sm gap-1">
+			<hlm-card-header>
+				<h3 hlmCardTitle>Small Card {{item}}</h3>
+				<p hlmCardDescription>This card uses the small size variant.</p>
+			</hlm-card-header>
+			<div hlmCardContent>
+				<p>The card component supports a size prop that can be set to "sm" for a more compact appearance.</p>
+			</div>
+			<hlm-card-footer>
+				<button hlmBtn variant="outline" size="sm" class="w-full">Action</button>
+			</hlm-card-footer>
+		</hlm-card>
     }
 
 </div>

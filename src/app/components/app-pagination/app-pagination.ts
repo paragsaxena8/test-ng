@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './app-pagination.html',
   styleUrl: './app-pagination.scss',
+  imports: [HlmPaginationImports],
 })
 export class PaginationComponent implements OnChanges {
   @Input() totalItems = 0;

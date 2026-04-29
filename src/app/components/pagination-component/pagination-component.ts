@@ -1,9 +1,10 @@
 import { Component, OnChanges } from '@angular/core';
 import { PaginationComponent } from '../app-pagination/app-pagination';
+import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
   selector: 'app-pagination-component',
-  imports: [PaginationComponent],
+  imports: [PaginationComponent, HlmCardImports],
   templateUrl: './pagination-component.html',
   styleUrl: './pagination-component.scss',
 })

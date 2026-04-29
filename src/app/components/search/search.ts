@@ -1,10 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { map } from 'rxjs';
 import { FilterPipe } from '../../pipes/filter';
+import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
+import { NgIcon, provideIcons } from "@ng-icons/core";
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { lucideSearch } from '@ng-icons/lucide';
+import { HlmCardImports } from '@spartan-ng/helm/card';
 
 interface Suggestion {
   id: number;
@@ -54,29 +59,41 @@ interface Suggestion {
       }
     `,
   ],
-  imports: [FormsModule, CommonModule, FilterPipe],
+  imports: [FormsModule, CommonModule, FilterPipe, HlmAutocompleteImports, NgIcon, HlmInputGroupImports, HlmCardImports],
+  providers: [provideIcons({ lucideSearch })],
 })
 export class Search implements OnInit {
   searchQuery = signal<string>('');
   autocompleteQuery = signal<string>('');
   readonly showSuggestions = signal<boolean>(false);
   suggestions = signal<Suggestion[]>([]);
+  public readonly filteredOptions = computed(() =>
+    this.suggestions().filter((suggestion: Suggestion) => suggestion.name.toLowerCase().includes(this.search().toLowerCase())),
+  );
 
   constructor(private httpClient: HttpClient) {}
   ngOnInit() {
-    this.httpClient.get<string[]>('https://jsonplaceholder.typicode.com/users')
-    .pipe(
-      map((users) => users.map((user:any) => ({ id: user.id, name: user.name, username: user.username, email: user.email })))
-    )
-    .subscribe((data: Suggestion[]) => {
-      console.log(data);
+    this.httpClient
+      .get<string[]>('https://jsonplaceholder.typicode.com/users')
+      .pipe(
+        map((users) =>
+          users.map((user: any) => ({
+            id: user.id,
+            name: user.name,
+            username: user.username,
+            email: user.email,
+          })),
+        ),
+      )
+      .subscribe((data: Suggestion[]) => {
+        console.log(data);
 
-      this.suggestions.set(data);
-    });
+        this.suggestions.set(data);
+      });
   }
 
   search() {
-    console.log(this.searchQuery());
+    return this.searchQuery();
   }
 
   selectSuggestion(suggestion: string) {

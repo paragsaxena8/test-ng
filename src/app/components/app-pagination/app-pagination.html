@@ -1,6 +1,6 @@
 @if (totalPages > 1) {
-<nav class="pagination">
-    <button (click)="prev()" [disabled]="currentPage === 1">
+<nav class="pagination" hidden>
+    <button>
         Prev
     </button>
     @for (p of pages; track p) {
@@ -13,4 +13,27 @@
         Next
     </button>
 </nav>
+
+<nav hlmPagination>
+    <ul hlmPaginationContent>
+
+        <li hlmPaginationItem>
+            <hlm-pagination-previous (click)="prev()" />
+        </li>
+        @for (p of pages; track p) {
+        <li hlmPaginationItem>
+            <a hlmPaginationLink (click)="changePage(p)" [isActive]="p === currentPage">{{ p }}</a>
+        </li>
+        }
+
+
+        <li hlmPaginationItem>
+            <hlm-pagination-ellipsis />
+        </li>
+        <li hlmPaginationItem>
+            <hlm-pagination-next (click)="next()" />
+        </li>
+    </ul>
+</nav>
+
 }

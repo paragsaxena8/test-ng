@@ -1,0 +1,124 @@
+:host {
+        display: block;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .page {
+        padding: 24px;
+      }
+
+      .open-button {
+        border: 0;
+        border-radius: 8px;
+        padding: 12px 18px;
+        background: #2563eb;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .open-button:hover {
+        background: #1d4ed8;
+      }
+
+      .backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.45);
+      }
+
+      .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1001;
+        width: min(320px, 85vw);
+        height: 100vh;
+        background: #fff;
+        box-shadow: 2px 0 18px rgba(0, 0, 0, 0.18);
+        display: flex;
+        flex-direction: column;
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .drawer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .drawer-header h2 {
+        margin: 0;
+        font-size: 20px;
+        color: #111827;
+      }
+
+      .close-button {
+        border: 0;
+        background: transparent;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+        color: #374151;
+      }
+
+      .drawer-body {
+        padding: 20px;
+      }
+
+      .drawer-body p {
+        margin-top: 0;
+        color: #4b5563;
+      }
+
+      .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .menu a {
+        text-decoration: none;
+        color: #1f2937;
+        font-weight: 500;
+      }
+
+      .menu a:hover {
+        color: #2563eb;
+      }
+
+      .drawer-enter {
+        transition:
+          transform 250ms ease-in-out,
+          opacity 250ms ease-in-out;
+        @starting-style {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+      }
+
+      .drawer-leave {
+        transition:
+          transform 250ms ease-in-out,
+          opacity 250ms ease-in-out;
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+
+      .backdrop-enter {
+        transition: opacity 250ms ease-in-out;
+        @starting-style {
+          opacity: 0;
+        }
+      }
+
+      .backdrop-leave {
+        transition: opacity 250ms ease-out-in;
+        opacity: 0;
+      }

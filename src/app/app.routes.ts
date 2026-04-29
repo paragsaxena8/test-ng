@@ -1,22 +1,17 @@
 import { Routes } from '@angular/router';
+import { practiceRoutes } from './components/practice-registry';
+
+const DASHBOARD_PATH = 'dashboard';
 
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./components/dashboard/dashboard').then((m) => m.Dashboard),
+    pathMatch: 'full',
+    redirectTo: DASHBOARD_PATH,
   },
+  ...practiceRoutes,
   {
-    path: 'search',
-    loadComponent: () => import('./components/1-search/search').then((m) => m.Search),
+    path: '**',
+    redirectTo: DASHBOARD_PATH,
   },
-  {
-    path: 'infinite-scroll',
-    loadComponent: () =>
-      import('./components/infinite-scroll/infinite-scroll').then((m) => m.InfiniteScroll),
-  },
-  {
-    path: 'pagination',
-    loadComponent: () =>
-      import('./components/pagination-component/pagination-component').then((m) => m.Pagination),
-  }
 ];
