@@ -4,7 +4,7 @@ import { BrnPopover, provideBrnPopoverConfig } from '@spartan-ng/brain/popover';
 import { classes } from '@spartan-ng/helm/utils';
 
 @Directive({
-	selector: '[hlmSelect],hlm-select',
+	selector: '[hlmSelectMultiple],hlm-select-multiple',
 	providers: [
 		provideBrnPopoverConfig({
 			align: 'start',
@@ -34,7 +34,7 @@ import { classes } from '@spartan-ng/helm/utils';
 		'data-slot': 'select',
 	},
 })
-export class HlmSelect {
+export class HlmSelectMultiple {
 	constructor() {
 		classes(() => 'block');
 	}

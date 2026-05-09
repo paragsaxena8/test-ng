@@ -7,7 +7,15 @@
       "Bash(ng build *)",
       "Bash(git checkout *)",
       "Bash(git restore *)",
-      "Bash(ng test *)"
+      "Bash(ng test *)",
+      "Bash(npx @spartan-ng/cli:ui input --force)",
+      "Bash(ng g *)",
+      "Bash(cd /d P:\\\\Work\\\\Projects\\\\test-ng)",
+      "Bash(ng serve *)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :4200)",
+      "Bash(taskkill *)",
+      "PowerShell(Stop-Process *)"
     ]
   }
 }

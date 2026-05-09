@@ -1,59 +1,103 @@
 # TestNg
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.7.
+An Angular 20 practice project showcasing UI patterns and components using Spartan NG Helm and Tailwind CSS v4.
 
-## Development server
+## Tech Stack
 
-To start a local development server, run:
+- **Angular 20** with standalone components (zoneless change detection)
+- **Spartan NG** - Brain primitives + Helm styled components
+- **Tailwind CSS v4** with custom light/dark themes
+- **NgRx** for state management
+- **TypeScript** with strict configuration
+
+## Development
 
 ```bash
+# Install dependencies
+pnpm install
+
+# Start development server
 ng serve
+# Opens at http://localhost:4200
+
+# Build for production
+ng build
+
+# Build with watch mode
+ng build --watch --configuration development
+
+# Run unit tests
+ng test
+
+# Run single test file
+ng test --include=**/specific-component.spec.ts
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Project Structure
 
-## Code scaffolding
+```
+src/
+├── app/
+│   ├── components/          # Practice components
+│   │   ├── dashboard/       # Bento grid navigation
+│   │   ├── search/          # Autocomplete search
+│   │   ├── infinite-scroll/ # Virtual scrolling
+│   │   ├── pagination*/     # Pagination patterns
+│   │   ├── drawer/          # Sheet/drawer demo
+│   │   ├── forms/           # Form utilities
+│   │   ├── widgets/         # Interactive widgets
+│   │   └── practice-registry.ts
+│   ├── shared/              # Reusable components
+│   ├── sidebar/             # App sidebar layout
+│   └── app.config.ts
+├── libs/ui/                  # Spartan NG Helm components
+└── styles.scss              # Global styles & theming
+```
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Helm Components
+
+This project uses Spartan NG's Helm components (styled Tailwind wrappers around Brain primitives). Components are kept locally in `libs/ui/` for full customization control.
+
+**Installed components (19):**
+`autocomplete`, `avatar`, `breadcrumb`, `button`, `card`, `collapsible`, `dropdown-menu`, `icon`, `input`, `input-group`, `pagination`, `select`, `separator`, `sheet`, `sidebar`, `skeleton`, `textarea`, `tooltip`, `utils`
+
+### Adding Components
 
 ```bash
+# Add a new Helm component
+ng g @spartan-ng/cli:ui <component-name>
+
+# Example: add a dialog component
+ng g @spartan-ng/cli:ui dialog
+```
+
+### Import Pattern
+
+```typescript
+import { HlmCardImports } from '@spartan-ng/helm/card';
+import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+
+@Component({
+  imports: [HlmCardImports, HlmSidebarImports],
+})
+```
+
+## Theming
+
+The app supports light and dark modes via CSS custom properties defined in `src/styles.scss`. Toggle dark mode by adding/removing the `.dark` class on the root element.
+
+## Code Scaffolding
+
+```bash
+# Generate a new component
 ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
+# List all available schematics
 ng generate --help
 ```
 
-## Building
+## Resources
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Angular CLI Documentation](https://angular.dev/tools/cli)
+- [Spartan NG Documentation](https://spartan.ng/documentation)
+- [Tailwind CSS v4](https://tailwindcss.com/docs)
